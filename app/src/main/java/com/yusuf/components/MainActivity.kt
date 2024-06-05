@@ -10,6 +10,7 @@ import androidx.navigation.toRoute
 import com.yusuf.components.ui.screens.MainScreen
 import com.yusuf.components.ui.screens.ResponsiveTextScreen
 import com.yusuf.components.ui.screens.ScrollingTextScreen
+import com.yusuf.components.ui.screens.SearchBarScreen
 import com.yusuf.components.ui.screens.TabbedScreenScreen
 import kotlinx.serialization.Serializable
 
@@ -26,6 +27,9 @@ object ScreenMain
 
 @Serializable
 object ScreenTabbedScreen
+
+@Serializable
+object ScreenSearchBar
 
 
 class MainActivity : ComponentActivity() {
@@ -48,6 +52,9 @@ class MainActivity : ComponentActivity() {
                         },
                         onNavigateToTabbedScreen = {
                             navController.navigate(ScreenTabbedScreen)
+                        },
+                        onNavigateToSearchBox = {
+                            navController.navigate(ScreenSearchBar)
                         }
                     )
                 }
@@ -61,6 +68,10 @@ class MainActivity : ComponentActivity() {
                 composable<ScreenTabbedScreen>{
                     TabbedScreenScreen(onBackClick = {navController.popBackStack()})
                 }
+                composable<ScreenSearchBar>{
+                    SearchBarScreen { navController.popBackStack() }
+                }
+
             }
 
         }

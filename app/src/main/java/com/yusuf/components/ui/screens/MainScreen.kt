@@ -25,6 +25,7 @@ fun MainScreen(
     onNavigateToResponsiveText: () -> Unit = {},
     onNavigateToScrollingText: (text: String) -> Unit = {},
     onNavigateToTabbedScreen: () -> Unit = {},
+    onNavigateToSearchBox: () -> Unit = {},
 ) {
 
     CustomComponentTheme {
@@ -40,6 +41,9 @@ fun MainScreen(
                 }
                 EllipseButton(text = "Tabbed Screen") {
                     onNavigateToTabbedScreen()
+                }
+                EllipseButton(text = "SearchBox") {
+                    onNavigateToSearchBox()
                 }
             }
         }

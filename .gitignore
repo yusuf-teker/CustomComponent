@@ -90,3 +90,6 @@ lint/tmp/
 # App Specific cases 
 app/release/output.json
 .idea/codeStyles/
+.idea/other.xml
+.idea/other.xml
+.idea/deploymentTargetSelector.xml
