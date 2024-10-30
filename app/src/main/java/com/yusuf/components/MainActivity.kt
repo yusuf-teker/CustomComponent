@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import com.yusuf.components.ui.screens.AnimationsScreen
 import com.yusuf.components.ui.screens.LoadingButtonScreen
 import com.yusuf.components.ui.screens.MainScreen
 import com.yusuf.components.ui.screens.ResponsiveTextScreen
@@ -35,6 +36,8 @@ object ScreenSearchBar
 @Serializable
 object ScreenLoadingButton
 
+@Serializable
+object ScreenAnimations
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +65,9 @@ class MainActivity : ComponentActivity() {
                         },
                         onNavigateToLoadingButton = {
                             navController.navigate(ScreenLoadingButton)
+                        },
+                        onNavigateToAnimations = {
+                            navController.navigate(ScreenAnimations)
                         }
                     )
                 }
@@ -80,6 +86,9 @@ class MainActivity : ComponentActivity() {
                 }
                 composable<ScreenLoadingButton>{
                     LoadingButtonScreen{navController.popBackStack()}
+                }
+                composable<ScreenAnimations>{
+                    AnimationsScreen{navController.popBackStack()}
                 }
 
             }

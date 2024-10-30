@@ -26,7 +26,8 @@ fun MainScreen(
     onNavigateToScrollingText: (text: String) -> Unit = {},
     onNavigateToTabbedScreen: () -> Unit = {},
     onNavigateToSearchBox: () -> Unit = {},
-    onNavigateToLoadingButton: () -> Unit = {}
+    onNavigateToLoadingButton: () -> Unit = {},
+    onNavigateToAnimations: () -> Unit = {}
 ) {
 
     CustomComponentTheme {
@@ -48,6 +49,9 @@ fun MainScreen(
                 }
                 EllipseButton(text = "Loading Button") {
                     onNavigateToLoadingButton()
+                }
+                EllipseButton(text = "Animations") {
+                    onNavigateToAnimations()
                 }
             }
         }
