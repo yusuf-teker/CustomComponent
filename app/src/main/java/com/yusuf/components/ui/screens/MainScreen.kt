@@ -27,7 +27,8 @@ fun MainScreen(
     onNavigateToTabbedScreen: () -> Unit = {},
     onNavigateToSearchBox: () -> Unit = {},
     onNavigateToLoadingButton: () -> Unit = {},
-    onNavigateToAnimations: () -> Unit = {}
+    onNavigateToAnimations: () -> Unit = {},
+    onNavigateToRgbBackground: () -> Unit = {}
 ) {
 
     CustomComponentTheme {
@@ -53,6 +54,10 @@ fun MainScreen(
                 EllipseButton(text = "Animations") {
                     onNavigateToAnimations()
                 }
+                EllipseButton(text = "Rgb Border") {
+                    onNavigateToRgbBackground()
+                }
+
             }
         }
     }

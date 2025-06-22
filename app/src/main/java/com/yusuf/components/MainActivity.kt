@@ -11,6 +11,7 @@ import com.yusuf.components.ui.screens.AnimationsScreen
 import com.yusuf.components.ui.screens.LoadingButtonScreen
 import com.yusuf.components.ui.screens.MainScreen
 import com.yusuf.components.ui.screens.ResponsiveTextScreen
+import com.yusuf.components.ui.screens.RgbBackgroundScreen
 import com.yusuf.components.ui.screens.ScrollingTextScreen
 import com.yusuf.components.ui.screens.SearchBarScreen
 import com.yusuf.components.ui.screens.TabbedScreenScreen
@@ -38,6 +39,9 @@ object ScreenLoadingButton
 
 @Serializable
 object ScreenAnimations
+
+@Serializable
+object RgbBackgroundScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,6 +72,9 @@ class MainActivity : ComponentActivity() {
                         },
                         onNavigateToAnimations = {
                             navController.navigate(ScreenAnimations)
+                        },
+                        onNavigateToRgbBackground = {
+                            navController.navigate(RgbBackgroundScreen )
                         }
                     )
                 }
@@ -90,6 +97,11 @@ class MainActivity : ComponentActivity() {
                 composable<ScreenAnimations>{
                     AnimationsScreen{navController.popBackStack()}
                 }
+
+                composable<RgbBackgroundScreen>{
+                    RgbBackgroundScreen{navController.popBackStack()}
+                }
+
 
             }
 

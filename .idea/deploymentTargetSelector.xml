@@ -4,19 +4,22 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-10-30T07:22:19.197111Z">
+        <DropdownSelection timestamp="2025-06-21T17:29:37.713211Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=/Users/P36039/.android/avd/Pixel_4_XL_API_33.avd" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=/Users/P36039/.android/avd/Pixel_8_Pro.avd" />
             </handle>
           </Target>
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="PreviewScrollingText">
+      <SelectionState runConfigName="RgbBackgroundPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="DraggableLettersPreview">
+      <SelectionState runConfigName="RainbowBorderPreview">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="RainbowBorderPreview2">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
