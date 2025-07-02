@@ -28,7 +28,8 @@ fun MainScreen(
     onNavigateToSearchBox: () -> Unit = {},
     onNavigateToLoadingButton: () -> Unit = {},
     onNavigateToAnimations: () -> Unit = {},
-    onNavigateToRgbBackground: () -> Unit = {}
+    onNavigateToRgbBackground: () -> Unit = {},
+    onNavigateToDraggebleList: () -> Unit = {},
 ) {
 
     CustomComponentTheme {
@@ -57,6 +58,10 @@ fun MainScreen(
                 EllipseButton(text = "Rgb Border") {
                     onNavigateToRgbBackground()
                 }
+                EllipseButton(text = "Draggable List") {
+                    onNavigateToDraggebleList()
+                }
+
 
             }
         }

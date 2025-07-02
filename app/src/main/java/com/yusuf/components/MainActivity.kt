@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.yusuf.components.ui.screens.AnimationsScreen
+import com.yusuf.components.ui.screens.DraggebleListScreen
 import com.yusuf.components.ui.screens.LoadingButtonScreen
 import com.yusuf.components.ui.screens.MainScreen
 import com.yusuf.components.ui.screens.ResponsiveTextScreen
@@ -43,6 +44,9 @@ object ScreenAnimations
 @Serializable
 object RgbBackgroundScreen
 
+@Serializable
+object DraggebleListScreen
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,6 +79,9 @@ class MainActivity : ComponentActivity() {
                         },
                         onNavigateToRgbBackground = {
                             navController.navigate(RgbBackgroundScreen )
+                        },
+                        onNavigateToDraggebleList = {
+                            navController.navigate(DraggebleListScreen) // Placeholder for future screen
                         }
                     )
                 }
@@ -102,6 +109,10 @@ class MainActivity : ComponentActivity() {
                     RgbBackgroundScreen{navController.popBackStack()}
                 }
 
+                composable<DraggebleListScreen>{
+                    // Placeholder for future screen
+                    DraggebleListScreen{navController.popBackStack()}
+                }
 
             }
 
