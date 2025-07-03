@@ -26,7 +26,7 @@ import org.burnoutcrew.reorderable.reorderable
 
 
 @Composable
-fun DraggebleListScreen(onBackClick: () -> Unit = {}) {
+fun DraggableListScreen(onBackClick: () -> Unit = {}) {
 
     ScaffoldWithAppBar(title = "Draggable Screen", onBackClick = onBackClick) {
         Box(

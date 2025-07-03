@@ -22,6 +22,9 @@
       <SelectionState runConfigName="RainbowBorderPreview2">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="LikeCircleButtonPrew">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>

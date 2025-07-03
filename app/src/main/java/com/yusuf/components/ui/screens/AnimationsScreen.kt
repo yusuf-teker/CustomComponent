@@ -9,16 +9,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.yusuf.components.ScreenAnimations
+import com.yusuf.components.ui.navigation.Destination
 import com.yusuf.components.ui.screens.animations.DraggableLettersScreen
 import com.yusuf.components.ui.util.ScaffoldWithAppBar
 import kotlinx.serialization.Serializable
 
+
 @Serializable
-object DraggableLettersScreen
+object ScreenAnimations // Base Ekran
 
 @Composable
 fun AnimationsScreen(onBackClick: () -> Unit = {}) {
@@ -28,15 +30,17 @@ fun AnimationsScreen(onBackClick: () -> Unit = {}) {
         navController = navController,
         startDestination = ScreenAnimations
     ){
-        composable<ScreenAnimations>{
+
+        composable<ScreenAnimations>{ // Base Ekran
             Screen(
-                onNavigateToAnimation1 = {
-                    navController.navigate(DraggableLettersScreen)
-                }
+               nav = navController,
+                onBackClick = onBackClick
             )
         }
-        composable<DraggableLettersScreen>{
-            DraggableLettersScreen(onBackClick = {navController.popBackStack()})
+        allAnimationsDestination.forEach { dest -> // Child Ekranlar
+            composable(dest.route) {
+                dest.Content { navController.popBackStack() }
+            }
         }
 
 
@@ -49,9 +53,12 @@ fun AnimationsScreen(onBackClick: () -> Unit = {}) {
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun Screen(
-    onNavigateToAnimation1: () -> Unit = {},
+    onBackClick: () -> Unit = {},
+    nav: NavController = rememberNavController(),
 ){
-    ScaffoldWithAppBar(title = "Animations") {
+    ScaffoldWithAppBar(title = "Animations", onBackClick = {onBackClick.invoke()}) {
+
+
         Box(
             Modifier.padding(8.dp),
             contentAlignment = Alignment.Center
@@ -59,10 +66,24 @@ fun Screen(
             FlowRow(
                 modifier = Modifier.fillMaxSize()
             ) {
-                EllipseButton(text = "DraggableLetters") {
-                    onNavigateToAnimation1.invoke()                }
 
+                allAnimationsDestination.forEach { dest ->
+                    EllipseButton(dest.label) { nav.navigate(dest.route) }
+                }              }
             }
         }
+
+}
+
+object DraggableLettersDest : Destination {
+    override val route = "draggableLetters"
+    override val label = "Draggable Letters"
+    @Composable
+    override fun Content(onBack: () -> Unit) {
+       DraggableLettersScreen(onBack)
     }
 }
+
+val allAnimationsDestination = listOf(
+    DraggableLettersDest
+)

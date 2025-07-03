@@ -13,65 +13,31 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.yusuf.components.ui.navigation.Destination
 import com.yusuf.components.ui.theme.CustomComponentTheme
 import com.yusuf.components.ui.util.ScaffoldWithAppBar
 import com.yusuf.components.ui.util.longText
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun MainScreen(
-    onNavigateToResponsiveText: () -> Unit = {},
-    onNavigateToScrollingText: (text: String) -> Unit = {},
-    onNavigateToTabbedScreen: () -> Unit = {},
-    onNavigateToSearchBox: () -> Unit = {},
-    onNavigateToLoadingButton: () -> Unit = {},
-    onNavigateToAnimations: () -> Unit = {},
-    onNavigateToRgbBackground: () -> Unit = {},
-    onNavigateToDraggebleList: () -> Unit = {},
-) {
-
-    CustomComponentTheme {
-        ScaffoldWithAppBar(title = "MainScreen", showBackIcon = false) {
-            FlowRow(
-                modifier = Modifier.fillMaxSize()
-            ) {
-                EllipseButton(text = "Responsive Text") {
-                    onNavigateToResponsiveText()
-                }
-                EllipseButton(text = "Scrolling Text") {
-                    onNavigateToScrollingText(longText)
-                }
-                EllipseButton(text = "Tabbed Screen") {
-                    onNavigateToTabbedScreen()
-                }
-                EllipseButton(text = "SearchBox") {
-                    onNavigateToSearchBox()
-                }
-                EllipseButton(text = "Loading Button") {
-                    onNavigateToLoadingButton()
-                }
-                EllipseButton(text = "Animations") {
-                    onNavigateToAnimations()
-                }
-                EllipseButton(text = "Rgb Border") {
-                    onNavigateToRgbBackground()
-                }
-                EllipseButton(text = "Draggable List") {
-                    onNavigateToDraggebleList()
-                }
-
-
-            }
-        }
+fun MainScreen(nav: NavController, dests: List<Destination>) = FlowRow {
+    dests.forEach { dest ->
+        EllipseButton(dest.label) { nav.navigate(dest.route) }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun MainPreview() {
-    MainScreen()
+    MainScreen(
+        nav = NavController(LocalContext.current),
+        dests = listOf()
+
+    )
 }
 
 
