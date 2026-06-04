@@ -2,9 +2,11 @@ package com.yusuf.components.ui.navigation
 
 import androidx.compose.runtime.Composable
 import com.yusuf.components.ui.screens.AnimationsScreen
+import com.yusuf.components.ui.screens.ClockScreen
 import com.yusuf.components.ui.screens.CustomButtonsScreen
 import com.yusuf.components.ui.screens.CustomIconsScreen
 import com.yusuf.components.ui.screens.DraggableListScreen
+import com.yusuf.components.ui.screens.FabButtonsScreen
 import com.yusuf.components.ui.screens.ResponsiveTextScreen
 import com.yusuf.components.ui.screens.RgbBackgroundScreen
 import com.yusuf.components.ui.screens.ScrollingTextScreen
@@ -92,6 +94,25 @@ object ScreenCustomIconsDest : Destination {
     }
 }
 
+
+object FabMenuScreenDest : Destination {
+    override val route = "fabMenu"
+    override val label = "Fab Menu"
+    @Composable
+    override fun Content(onBack: () -> Unit) {
+        FabButtonsScreen(onBack)
+    }
+}
+
+object ClockScreenDest : Destination {
+    override val route = "clockScreen"
+    override val label = "Clock Screen"
+    @Composable
+    override fun Content(onBack: () -> Unit) {
+        ClockScreen(onBack)
+    }
+}
+
 val allDestinations = listOf(
     ScreenResponsiveTextDest,
     ScreenScrollingTextDest,
@@ -101,5 +122,6 @@ val allDestinations = listOf(
     ScreenAnimationsDest,
     RgbBackgroundScreenDest,
     DraggableListScreenDest,
-    ScreenCustomIconsDest
+    ScreenCustomIconsDest,
+    FabMenuScreenDest,ClockScreenDest
 )

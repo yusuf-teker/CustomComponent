@@ -28,7 +28,14 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun TabbedScreen(initialPage: Int = 0, onTabChanged: (Int) -> Unit, screens: List<Screen>) {
+fun TabbedScreen(
+    initialPage: Int = 0,
+    onTabChanged: (Int) -> Unit,
+    tabBackgroundColor: Color = Color.Black,
+    selectedTabColor: Color = Color.Green,
+    unselectedTabColor: Color = Color.Gray,
+    screens: List<Screen>
+) {
 
     LaunchedEffect(true) {
         onTabChanged.invoke(initialPage)
@@ -39,7 +46,7 @@ fun TabbedScreen(initialPage: Int = 0, onTabChanged: (Int) -> Unit, screens: Lis
             .background(Color.LightGray)
     ) {
         val tabs = screens.map {
-            TebTabRowItem(it.title)
+            TabRowItem(it.title)
         }
         val pagerState = rememberPagerState(
             initialPage = initialPage, initialPageOffsetFraction = 0f
@@ -49,14 +56,19 @@ fun TabbedScreen(initialPage: Int = 0, onTabChanged: (Int) -> Unit, screens: Lis
 
         val coroutineScope = rememberCoroutineScope()
 
-        TabRow(selectedTabIndex = pagerState.currentPage, tabs = tabs,
-
+        TabRow(
+            selectedTabIndex = pagerState.currentPage,
+            tabs = tabs,
+            tabBackgroundColor = tabBackgroundColor,
+            selectedTabColor = selectedTabColor,
+            unselectedTabColor = unselectedTabColor,
             onTabChanged = { index, _ ->
-            onTabChanged(index)
-            coroutineScope.launch {
-                pagerState.animateScrollToPage(index)
+                onTabChanged(index)
+                coroutineScope.launch {
+                    pagerState.animateScrollToPage(index)
+                }
             }
-        })
+        )
 
 
         HorizontalPager(
@@ -94,7 +106,9 @@ fun TabbedScreenPreview() {
         initialPage = 0,
         onTabChanged = {},
         screens = listOf(screenExample, screenExample),
-
+        tabBackgroundColor = MaterialTheme.colorScheme.secondaryContainer,
+        selectedTabColor = MaterialTheme.colorScheme.primary,
+        unselectedTabColor = MaterialTheme.colorScheme.secondary,
         )
 }
 
@@ -107,9 +121,11 @@ data class Screen(
 @Composable
 fun TabRow(
     selectedTabIndex: Int = 0,
-    tabs: List<TebTabRowItem>,
-    tabColor: Color = MaterialTheme.colorScheme.secondaryContainer,
-    onTabChanged: (Int, TebTabRowItem) -> Unit,
+    tabs: List<TabRowItem>,
+    tabBackgroundColor: Color = MaterialTheme.colorScheme.secondaryContainer,
+    selectedTabColor: Color = MaterialTheme.colorScheme.primary,
+    unselectedTabColor: Color = MaterialTheme.colorScheme.secondary,
+    onTabChanged: (Int, TabRowItem) -> Unit,
 ) {
 
     TabRow(selectedTabIndex = selectedTabIndex,
@@ -117,7 +133,7 @@ fun TabRow(
         indicator = {},
         divider = {},
         modifier = Modifier
-            .background(MaterialTheme.colorScheme.secondaryContainer)
+            .background(tabBackgroundColor)
             .padding(4.dp)
 
     ) {
@@ -125,7 +141,7 @@ fun TabRow(
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(if (selectedTabIndex == index) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.tertiaryContainer),
+                    .background(if (selectedTabIndex == index) selectedTabColor else unselectedTabColor),
 
                 ) {
                 Tab(
@@ -139,7 +155,7 @@ fun TabRow(
                             overflow = TextOverflow.Ellipsis,
                             text = screen.title,
                             style = TextStyle.Default.copy(
-                                color = if (selectedTabIndex == index) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.tertiary,
+                                color = if (selectedTabIndex == index) Color.Black else Color.DarkGray,
                             )
                         )
                     },
@@ -156,7 +172,7 @@ fun TabRow(
     }
 }
 
-data class TebTabRowItem(
+data class TabRowItem(
     val title: String
 )
 
@@ -168,7 +184,7 @@ fun TabRowPreview() {
     }
 
     TabRow(tabIndex.intValue, tabs = listOf(
-        TebTabRowItem("TAB TITLE 1"), TebTabRowItem("TAB TITLE 2")
+        TabRowItem("TAB TITLE 1"), TabRowItem("TAB TITLE 2")
     ), onTabChanged = { index, _ ->
         tabIndex.intValue = index
     })
