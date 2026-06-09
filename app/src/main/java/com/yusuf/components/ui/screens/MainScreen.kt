@@ -17,7 +17,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.yusuf.components.ui.components.others.AnimatedMotionButton
 import com.yusuf.components.ui.navigation.Destination
+import com.yusuf.components.ui.navigation.ScreenAnimationsDest
 import com.yusuf.components.ui.theme.CustomComponentTheme
 import com.yusuf.components.ui.util.ScaffoldWithAppBar
 import com.yusuf.components.ui.util.longText
@@ -26,7 +28,11 @@ import com.yusuf.components.ui.util.longText
 @Composable
 fun MainScreen(nav: NavController, dests: List<Destination>) = FlowRow {
     dests.forEach { dest ->
-        EllipseButton(dest.label) { nav.navigate(dest.route) }
+        if (dest is ScreenAnimationsDest){
+            AnimatedMotionButton(dest.label) { nav.navigate(dest.route) }
+        }else{
+            EllipseButton(dest.label) { nav.navigate(dest.route) }
+        }
     }
 }
 

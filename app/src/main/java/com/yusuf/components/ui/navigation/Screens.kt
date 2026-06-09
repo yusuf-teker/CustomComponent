@@ -11,6 +11,7 @@ import com.yusuf.components.ui.screens.ResponsiveTextScreen
 import com.yusuf.components.ui.screens.RgbBackgroundScreen
 import com.yusuf.components.ui.screens.ScrollingTextScreen
 import com.yusuf.components.ui.screens.SearchBarScreen
+import com.yusuf.components.ui.screens.SocialMediaItemsScreen
 import com.yusuf.components.ui.screens.TabbedScreenScreen
 
 object ScreenResponsiveTextDest : Destination {
@@ -113,15 +114,25 @@ object ClockScreenDest : Destination {
     }
 }
 
+object SocialMediaItemsScreenDest : Destination {
+    override val route = "socialMediaItems"
+    override val label = "Social Media Items"
+    @Composable
+    override fun Content(onBack: () -> Unit) {
+        SocialMediaItemsScreen(onBack)
+    }
+}
+
 val allDestinations = listOf(
     ScreenResponsiveTextDest,
     ScreenScrollingTextDest,
     ScreenTabbedScreenDest,
     ScreenSearchBarDest,
     ScreenCustomButtonsDest,
-    ScreenAnimationsDest,
     RgbBackgroundScreenDest,
     DraggableListScreenDest,
     ScreenCustomIconsDest,
-    FabMenuScreenDest,ClockScreenDest
-)
+    FabMenuScreenDest,ClockScreenDest,
+    ScreenAnimationsDest,
+    SocialMediaItemsScreenDest
+    )
