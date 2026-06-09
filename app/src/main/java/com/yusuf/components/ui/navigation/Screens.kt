@@ -2,6 +2,7 @@ package com.yusuf.components.ui.navigation
 
 import androidx.compose.runtime.Composable
 import com.yusuf.components.ui.screens.AnimationsScreen
+import com.yusuf.components.ui.screens.BottomSheetScreen
 import com.yusuf.components.ui.screens.ClockScreen
 import com.yusuf.components.ui.screens.CustomButtonsScreen
 import com.yusuf.components.ui.screens.CustomIconsScreen
@@ -12,6 +13,7 @@ import com.yusuf.components.ui.screens.RgbBackgroundScreen
 import com.yusuf.components.ui.screens.ScrollingTextScreen
 import com.yusuf.components.ui.screens.SearchBarScreen
 import com.yusuf.components.ui.screens.SocialMediaItemsScreen
+import com.yusuf.components.ui.components.instagram.InstagramFollowersScreen
 import com.yusuf.components.ui.screens.TabbedScreenScreen
 
 object ScreenResponsiveTextDest : Destination {
@@ -123,6 +125,40 @@ object SocialMediaItemsScreenDest : Destination {
     }
 }
 
+object BottomSheetScreenDest : Destination {
+    override val route = "bottomSheet"
+    override val label = "Bottom Sheet"
+    @Composable
+    override fun Content(onBack: () -> Unit) {
+         BottomSheetScreen(onBack)
+    }
+}
+
+object InstagramFollowersScreenDest : Destination {
+    override val route = "instagramFollowers"
+    override val label = "Instagram Followers"
+    @Composable
+    override fun Content(onBack: () -> Unit) {
+        InstagramFollowersScreen(
+            currentUser = com.yusuf.components.ui.components.instagram.InstagramUser(
+                id = "current_user",
+                username = "yusuf_teker",
+                fullName = "Yusuf Teker",
+                avatarUrl = null,
+                isFollowing = false,
+                isMutual = false
+            ),
+            followers = com.yusuf.components.ui.components.instagram.sampleFollowers,
+            following = com.yusuf.components.ui.components.instagram.sampleFollowing,
+            blocked = com.yusuf.components.ui.components.instagram.sampleBlocked,
+            onBackClick = onBack
+        )
+    }
+}
+
+
+
+
 val allDestinations = listOf(
     ScreenResponsiveTextDest,
     ScreenScrollingTextDest,
@@ -134,5 +170,7 @@ val allDestinations = listOf(
     ScreenCustomIconsDest,
     FabMenuScreenDest,ClockScreenDest,
     ScreenAnimationsDest,
-    SocialMediaItemsScreenDest
+    SocialMediaItemsScreenDest,
+    BottomSheetScreenDest,
+    InstagramFollowersScreenDest
     )
